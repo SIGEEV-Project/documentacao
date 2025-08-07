@@ -1,0 +1,84 @@
+@startuml
+!theme plain
+hide circle
+
+entity "Usuarios" {
+  * **usuarioId** : UUID <<PK>>
+  --
+  primeiroNome : VARCHAR(50)
+  ultimoNome : VARCHAR(100)
+  email : VARCHAR(100) <<UNIQUE>>
+  cpf : VARCHAR(11) <<UNIQUE>>
+  telefone : VARCHAR(15)
+  dataNascimento : DATE
+  perfil : ENUM
+  status : VARCHAR(20)
+  dataCadastro : TIMESTAMP
+}
+
+entity "Senhas" {
+  * **senhaId** : UUID <<PK>>
+  --
+  usuarioId : UUID <<FK>>
+  senhaHash : TEXT
+  dataCriacao : TIMESTAMP
+}
+
+entity "HistoricoDePromocoes" {
+  * **historicoId** : UUID <<PK>>
+  --
+  usuarioId : UUID <<FK>>
+  adminId : UUID <<FK>>
+  tipoAcao : ENUM
+  perfilAntigo : ENUM
+  perfilNovo : ENUM
+  dataAcao : TIMESTAMP
+}
+
+entity "Eventos" {
+  * **eventoId** : UUID <<PK>>
+  --
+  promotorId : UUID <<FK>>
+  titulo : VARCHAR(100)
+  descricao : TEXT
+  dataInicio : TIMESTAMP
+  dataFim : TIMESTAMP
+  local : VARCHAR(100)
+  capacidade : INTEGER
+  vagasRestantes : INTEGER
+  bannerUrl : TEXT
+  status : ENUM
+  dataCriacao : TIMESTAMP
+}
+
+entity "PrecosEventos" {
+  * **precoId** : UUID <<PK>>
+  --
+  eventoId : UUID <<FK>>
+  tipoIngresso : VARCHAR(50)
+  valor : DECIMAL(10,2)
+  disponivel : BOOLEAN
+}
+
+entity "Inscricoes" {
+  * **inscricaoId** : UUID <<PK>>
+  --
+  usuarioId : UUID <<FK>>
+  eventoId : UUID <<FK>>
+  precoId : UUID <<FK>>
+  dataInscricao : TIMESTAMP
+  dataCancelamento : TIMESTAMP
+  status : ENUM
+}
+
+Usuarios ||..o{ Senhas : tem
+Usuarios ||..o{ HistoricoDePromocoes : realizou
+Usuarios ||..o{ Eventos : promoveu
+Usuarios ||..o{ Inscricoes : fez
+
+Eventos ||..o{ PrecosEventos : tem
+Eventos ||..o{ Inscricoes : tem
+
+PrecosEventos ||..o{ Inscricoes : selecionado
+
+@enduml

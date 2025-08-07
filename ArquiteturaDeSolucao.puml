@@ -1,0 +1,41 @@
+@startuml
+!theme plain
+title Arquitetura de Solução - Sistema de Eventos
+
+actor "Usuário/Promotor/Admin" as User
+
+' Frontend
+component "Frontend (SPA/Mobile)" as Frontend
+
+' API Gateway / BFF
+node "BFF - Backend for Frontend" as BFF {
+    component "Gateway de API" as ApiGateway
+}
+
+' Microservices
+cloud "Microserviços (Backend)" as Microservices {
+    component "Serviço de Usuários" as UserService
+    component "Serviço de Eventos" as EventService
+    component "Serviço de Inscrições" as SubscriptionService
+    component "Serviço de Notificações" as NotificationService
+}
+
+' Banco de Dados
+database "Banco de Dados PostgreSQL" as PostgresDB
+
+' Relações de Comunicação
+User --> Frontend : Acesso Web
+Frontend --> BFF : Requisições RESTful (JSON)
+
+BFF --> UserService : Gerencia Autenticação/Perfil
+BFF --> EventService : Listagem/Criação de Eventos
+BFF --> SubscriptionService : Gerencia Inscrições
+
+UserService --> PostgresDB : Persistência de Dados
+EventService --> PostgresDB : Persistência de Dados
+SubscriptionService --> PostgresDB : Persistência de Dados
+
+NotificationService ..> UserService : Envia e-mail (recuperação de senha)
+SubscriptionService ..> NotificationService : Envia e-mail (confirmação de inscrição)
+
+@enduml

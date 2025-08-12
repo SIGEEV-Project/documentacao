@@ -245,7 +245,7 @@ O usuário deve ser capaz de renovar o seu token de autenticação sem precisar 
 
 ----
 
-### Caso de uso 03 - Alteração de Perfil
+### Caso de uso 03 - Alteração de Dados pessoais
 
 **Requisito Funcional: RF003**
 

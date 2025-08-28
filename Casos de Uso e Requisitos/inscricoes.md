@@ -5,9 +5,15 @@
 
 ## 3. Módulo de Inscrições
 
-### Caso de Uso 15 – Inscrição em Evento
+### Índice
+  - [Caso de Uso 001 – Inscrição em Evento](#caso-de-uso-001--inscrição-em-evento)
+  - [Caso de Uso 002 – Listagem de Minhas Inscrições](#caso-de-uso-002--listagem-de-minhas-inscrições)
+  - [Caso de Uso 003 – Cancelamento de Inscrição](#caso-de-uso-003--cancelamento-de-inscrição)
+  - [Caso de Uso 004 – Listagem de Inscrições por Evento](#caso-de-uso-004--listagem-de-inscrições-por-evento)
 
-**Requisito Funcional: RF015**
+### Caso de Uso 001 – Inscrição em Evento
+
+**Requisito Funcional: INS-RF-001**
 
 **Descrição resumida**
 O usuário deve ser capaz de se inscrever em um evento.
@@ -87,9 +93,9 @@ Se a inscrição for bem-sucedida, o sistema deve atualizar o número de vagas r
 
 ----
 
-### Caso de Uso 16 – Listagem de Minhas Inscrições
+### Caso de Uso 002 – Listagem de Minhas Inscrições
 
-**Requisito Funcional: RF016**
+**Requisito Funcional: INS-RF-002**
 
 **Descrição resumida**
 O usuário deve ser capaz de visualizar a lista de suas inscrições em eventos.
@@ -162,9 +168,9 @@ O sistema deve retornar os eventos nos quais o usuário está inscrito, com deta
 
 ----
 
-### Caso de Uso 17 – Cancelamento de Inscrição
+### Caso de Uso 003 – Cancelamento de Inscrição
 
-**Requisito Funcional: RF017**
+**Requisito Funcional: INS-RF-003**
 
 **Descrição resumida**
 O usuário deve ser capaz de cancelar sua inscrição em um evento.
@@ -236,9 +242,9 @@ O sistema deve atualizar o número de vagas restantes do evento e enviar um emai
 
 ----
 
-### Caso de Uso 18 – Listagem de Inscrições por Evento
+### Caso de Uso 004 – Listagem de Inscrições por Evento
 
-**Requisito Funcional: RF018**
+**Requisito Funcional: INS-RF-004**
 
 **Descrição resumida**
 O promotor deve ser capaz de visualizar a lista de inscrições em um evento específico.

@@ -7,11 +7,11 @@
   - [Objetivos do Módulo](#objetivos-do-módulo)
   - [Responsabilidades dos Serviços - Visão geral](#responsabilidades-dos-serviços---visão-geral)
 - [Casos de uso](#casos-de-uso)
-  - [Caso de Uso 01 – Login de Usuário](#caso-de-uso-01--login-de-usuário)
-  - [Caso de Uso 02 – Renovação de Token (Refresh Token)](#caso-de-uso-02--renovação-de-token-refresh-token)
-  - [Caso de Uso 03 – Troca de Senha](#caso-de-uso-03--troca-de-senha)
-  - [Caso de Uso 04 – Solicitar Recuperação de Senha](#caso-de-uso-04--solicitar-recuperação-de-senha)
-  - [Caso de Uso 05 – Redefinir Senha](#caso-de-uso-05--redefinir-senha)
+  - [Caso de Uso 001 – Login de Usuário](#caso-de-uso-001--login-de-usuário)
+  - [Caso de Uso 002 – Renovação de Token (Refresh Token)](#caso-de-uso-002--renovação-de-token-refresh-token)
+  - [Caso de Uso 003 – Troca de Senha](#caso-de-uso-003--troca-de-senha)
+  - [Caso de Uso 004 – Solicitar Recuperação de Senha](#caso-de-uso-004--solicitar-recuperação-de-senha)
+  - [Caso de Uso 005 – Redefinir Senha](#caso-de-uso-005--redefinir-senha)
 - [Convenções e Padrões](#convenções-e-padrões)
   - [Estrutura de Respostas](#estrutura-de-respostas)
   - [Headers Padrão](#headers-padrão)
@@ -81,9 +81,9 @@ Este módulo é implementado como parte da arquitetura de microserviços do SIGE
 
 ## Casos de uso
 
-### Caso de Uso 01 – Login de Usuário
+### Caso de Uso 001 – Login de Usuário
 
-**Requisito Funcional: RF001**
+**Requisito Funcional: AUT-RF-001**
 
 **Descrição resumida**
 O usuário deve ser capaz de fazer login no sistema utilizando seu email e senha. O sistema valida as credenciais e retorna um token JWT.
@@ -210,9 +210,9 @@ O usuário deve ser capaz de fazer login no sistema utilizando seu email e senha
 
 ----
 
-### Caso de Uso 02 – Renovação de Token (Refresh Token)
+### Caso de Uso 002 – Renovação de Token (Refresh Token)
 
-**Requisito Funcional: RF002**
+**Requisito Funcional: AUT-RF-002**
 
 **Descrição resumida**
 Permite ao usuário renovar seu token de acesso sem precisar fazer login novamente, utilizando um refresh token válido.
@@ -310,9 +310,9 @@ Permite ao usuário renovar seu token de acesso sem precisar fazer login novamen
 
 ----
 
-### Caso de Uso 03 – Troca de Senha
+### Caso de Uso 003 – Troca de Senha
 
-**Requisito Funcional: RF003**
+**Requisito Funcional: AUT-RF-003**
 
 **Descrição resumida**
 Permite ao usuário logado alterar sua senha atual por uma nova, desde que a senha atual seja válida.
@@ -385,9 +385,9 @@ Permite ao usuário logado alterar sua senha atual por uma nova, desde que a sen
 
 ----
 
-### Caso de Uso 04 – Solicitar Recuperação de Senha
+### Caso de Uso 004 – Solicitar Recuperação de Senha
 
-**Requisito Funcional: RF004**
+**Requisito Funcional: AUT-RF-004**
 
 **Descrição resumida**
 Permite ao usuário solicitar a recuperação da senha. O sistema envia um email com um link para redefinição.
@@ -448,9 +448,9 @@ Permite ao usuário solicitar a recuperação da senha. O sistema envia um email
 
 ----
 
-### Caso de Uso 05 – Redefinir Senha
+### Caso de Uso 005 – Redefinir Senha
 
-**Requisito Funcional: RF005**
+**Requisito Funcional: AUT-RF-005**
 
 **Descrição resumida**
 Permite ao usuário definir uma nova senha usando o token de recuperação recebido por email.

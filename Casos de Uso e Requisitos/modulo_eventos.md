@@ -8,13 +8,13 @@
     - [Objetivos do Módulo](#objetivos-do-módulo)
     - [Responsabilidades dos Serviços - Visão geral](#responsabilidades-dos-serviços---visão-geral)
   - [Casos de uso](#casos-de-uso)
-    - [Caso de Uso 09 – Criação de Evento](#caso-de-uso-09--criação-de-evento)
-    - [Caso de Uso 10 – Listagem de Eventos](#caso-de-uso-10--listagem-de-eventos)
-    - [Caso de Uso 11 – Filtrar eventos, Pesquisa avançada](#caso-de-uso-11--filtrar-eventos-pesquisa-avançada)
-    - [Caso de Uso 11.1 – Listar Meus Eventos (Visão do Promotor)](#caso-de-uso-111--listar-meus-eventos-visão-do-promotor)
-    - [Caso de Uso 12 – Detalhes do Evento](#caso-de-uso-12--detalhes-do-evento)
-    - [Caso de Uso 13 – Edição de Evento](#caso-de-uso-13--edição-de-evento)
-    - [Caso de Uso 14 – Cancelamento de Evento](#caso-de-uso-14--cancelamento-de-evento)
+  - [Caso de Uso 001 – Criação de Evento](#caso-de-uso-001--criação-de-evento)
+  - [Caso de Uso 002 – Listagem de Eventos](#caso-de-uso-002--listagem-de-eventos)
+  - [Caso de Uso 003 – Filtrar eventos, Pesquisa avançada](#caso-de-uso-003--filtrar-eventos-pesquisa-avançada)
+  - [Caso de Uso 004 – Listar Meus Eventos (Visão do Promotor)](#caso-de-uso-004--listar-meus-eventos-visão-do-promotor)
+  - [Caso de Uso 005 – Detalhes do Evento](#caso-de-uso-005--detalhes-do-evento)
+  - [Caso de Uso 006 – Edição de Evento](#caso-de-uso-006--edição-de-evento)
+  - [Caso de Uso 007 – Cancelamento de Evento](#caso-de-uso-007--cancelamento-de-evento)
     - [Diagrama de Ciclo de Vida do Evento](#diagrama-de-ciclo-de-vida-do-evento)
   - [Convenções e Padrões](#convenções-e-padrões)
     - [Estrutura de Respostas](#estrutura-de-respostas)
@@ -76,9 +76,9 @@ Este módulo é implementado como parte da arquitetura de microserviços do SIGE
 
 ## Casos de uso
 
-### Caso de Uso 09 – Criação de Evento
+### Caso de Uso 001 – Criação de Evento
 
-**Requisito Funcional: RF009**
+**Requisito Funcional: EVT-RF-001**
 
 **Descrição resumida**
 O promotor deve ser capaz de criar um evento, fornecendo informações como título, descrição, data, local, capacidade e preço.
@@ -210,9 +210,9 @@ O sistema deve validar os dados e salvar o evento com status "rascunho" ou "ativ
 
 ----
 
-### Caso de Uso 10 – Listagem de Eventos
+### Caso de Uso 002 – Listagem de Eventos
 
-**Requisito Funcional: RF010**
+**Requisito Funcional: EVT-RF-002**
 
 **Descrição resumida**
 
@@ -326,9 +326,9 @@ O sistema deve retornar os eventos com resumo (título, data, local e banner).
 
 ----
 
-### Caso de Uso 11 – Filtrar eventos, Pesquisa avançada
+### Caso de Uso 003 – Filtrar eventos, Pesquisa avançada
 
-**Requisito Funcional: RF011**
+**Requisito Funcional: EVT-RF-003**
 
 **Descrição resumida**
 
@@ -472,9 +472,9 @@ O sistema deve retornar os eventos que atendem aos critérios de filtro.
 
 ----
 
-### Caso de Uso 11.1 – Listar Meus Eventos (Visão do Promotor)
+### Caso de Uso 004 – Listar Meus Eventos (Visão do Promotor)
 
-**Requisito Funcional: RF011.1**
+**Requisito Funcional: EVT-RF-004**
 
 **Descrição resumida**
 
@@ -557,9 +557,9 @@ O sistema deve retornar uma lista paginada e filtrada dos eventos pertencentes a
 
 ----
 
-### Caso de Uso 12 – Detalhes do Evento
+### Caso de Uso 005 – Detalhes do Evento
 
-**Requisito Funcional: RF012**
+**Requisito Funcional: EVT-RF-005**
 
 **Descrição resumida**
 
@@ -672,9 +672,9 @@ O sistema deve retornar todas as informações do evento, incluindo título, des
 
 ----
 
-### Caso de Uso 13 – Edição de Evento
+### Caso de Uso 006 – Edição de Evento
 
-**Requisito Funcional: RF013**
+**Requisito Funcional: EVT-RF-006**
 
 **Descrição resumida**
 O promotor deve ser capaz de editar as informações de um evento existente.
@@ -824,9 +824,9 @@ O sistema deve validar os dados e atualizar o evento com as novas informações.
 
 ----
 
-### Caso de Uso 14 – Cancelamento de Evento
+### Caso de Uso 007 – Cancelamento de Evento
 
-**Requisito Funcional: RF014**
+**Requisito Funcional: EVT-RF-007**
 
 **Descrição resumida**
 O promotor deve ser capaz de cancelar um evento existente.

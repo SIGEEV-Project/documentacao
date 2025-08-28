@@ -7,12 +7,12 @@
 - [Objetivos do Módulo](#objetivos-do-módulo)
 - [Responsabilidades dos Serviços - Visão geral](#responsabilidades-dos-serviços---visão-geral)
 - [Casos de uso](#casos-de-uso)
-  - [Caso de Uso 01 – Cadastro de Usuário](#caso-de-uso-01--cadastro-de-usuário)
-  - [Caso de Uso 02 – Consulta de Perfil](#caso-de-uso-02--consulta-de-perfil)
-  - [Caso de Uso 03 – Atualização de Perfil](#caso-de-uso-03--atualização-de-perfil)
-  - [Caso de Uso 04 – Promoção de Perfil](#caso-de-uso-04--promoção-de-perfil)
-  - [Caso de Uso 05 – Rebaixar Perfil de Promotor para Participante](#caso-de-uso-05--rebaixar-perfil-de-promotor-para-participante)
-  - [Caso de Uso 06 – Exclusão de Conta](#caso-de-uso-06--exclusão-de-conta)
+  - [Caso de Uso 001 – Cadastro de Usuário](#caso-de-uso-001--cadastro-de-usuário)
+  - [Caso de Uso 002 – Consulta de Perfil](#caso-de-uso-002--consulta-de-perfil)
+  - [Caso de Uso 003 – Atualização de Perfil](#caso-de-uso-003--atualização-de-perfil)
+  - [Caso de Uso 004 – Promoção de Perfil](#caso-de-uso-004--promoção-de-perfil)
+  - [Caso de Uso 005 – Rebaixar Perfil de Promotor para Participante](#caso-de-uso-005--rebaixar-perfil-de-promotor-para-participante)
+  - [Caso de Uso 006 – Exclusão de Conta](#caso-de-uso-006--exclusão-de-conta)
 - [Convenções e Padrões Específicos do Módulo de Usuários](#convenções-e-padrões-específicos-do-módulo-de-usuários)
   - [1. Modelo de Dados do Usuário](#1-modelo-de-dados-do-usuário)
   - [2. Validações de Dados](#2-validações-de-dados)
@@ -90,9 +90,9 @@ Este módulo é implementado como parte da arquitetura de microserviços do SIGE
 
 ## Casos de uso
 
-### Caso de Uso 01 – Cadastro de Usuário
+### Caso de Uso 001 – Cadastro de Usuário
 
-**Requisito Funcional: RF001**
+**Requisito Funcional: USU-RF-001**
 
 **Descrição resumida**
 O usuário deve ser capaz de se registrar no sistema fornecendo os seus dados pessoais. O sistema deve validar a unicidade do CPF e do email, retornando um token JWT para autenticação.
@@ -197,9 +197,9 @@ O usuário deve ser capaz de se registrar no sistema fornecendo os seus dados pe
 
 ----
 
-### Caso de Uso 02 – Consulta de Perfil
+### Caso de Uso 002 – Consulta de Perfil
 
-**Requisito Funcional: RF002**
+**Requisito Funcional: USU-RF-002**
 
 **Descrição resumida**
 O usuário deve ser capaz de consultar os dados do seu perfil no sistema, incluindo informações pessoais, endereço e configurações da conta.
@@ -268,9 +268,9 @@ Não é necessário payload, apenas o token de autenticação no header.
 
 ----
 
-### Caso de Uso 03 – Atualização de Perfil
+### Caso de Uso 003 – Atualização de Perfil
 
-**Requisito Funcional: RF003**
+**Requisito Funcional: USU-RF-003**
 
 **Descrição resumida**
 O usuário deve ser capaz de atualizar os dados pessoais do seu perfil, incluindo nome, telefone, data de nascimento e endereço.
@@ -349,9 +349,9 @@ O sistema deve validar as alterações e garantir a integridade dos dados.
 * O sistema deve enviar um email de notificação ao usuário informando sobre a alteração dos seus dados pessoais.
 * O sistema deve garantir que o usuário não possa alterar o seu email ou CPF, apenas os dados pessoais e de contato.
 
-### Caso de Uso 04 – Promoção de Perfil
+### Caso de Uso 004 – Promoção de Perfil
 
-**Requisito Funcional: RF004**
+**Requisito Funcional: USU-RF-004**
 
 **Descrição resumida**
 O administrador deve ser capaz de promover um usuário a promotor de evento, alterando o seu perfil para "promotor".
@@ -420,9 +420,9 @@ O sistema deve validar se o usuário existe e atualizar o seu perfil corretament
 
 ---
 
-### Caso de Uso 05 – Rebaixar Perfil de Promotor para Participante
+### Caso de Uso 005 – Rebaixar Perfil de Promotor para Participante
 
-**Requisito Funcional: RF005**
+**Requisito Funcional: USU-RF-005**
 
 **Descrição resumida**
 O administrador deve ser capaz de rebaixar um usuário de promotor para participante, alterando o seu perfil.
@@ -489,9 +489,9 @@ O sistema deve validar se o usuário existe e atualizar o seu perfil corretament
 * O sistema deve registrar logs de auditoria para todas as rebaixamentos de usuários.
 * O sistema deve registrar o ID do administrador que realizou o rebaixamento.
 
-### Caso de Uso 06 – Exclusão de Conta
+### Caso de Uso 006 – Exclusão de Conta
 
-**Requisito Funcional: RF006**
+**Requisito Funcional: USU-RF-006**
 
 **Descrição resumida**
 O usuário deve ser capaz de solicitar a exclusão da sua conta.

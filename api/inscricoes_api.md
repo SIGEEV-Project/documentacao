@@ -114,6 +114,10 @@ Validações principais:
 - Usuário não inscrito previamente
 - Usuário ativo
 
+Comportamentos do sistema:
+- Sistema dispara notificação de confirmação por e-mail
+- Sistema registra auditoria da operação para fins de segurança
+
 Respostas: 201 / 403 (evento inativo) / 404 (evento) / 409 (vagas esgotadas ou já inscrito) / 429 (rate limit, opcional) / 500
 
 Exemplo Sucesso (201):
@@ -149,6 +153,9 @@ Conflito (409) - Exemplo:
 ### GET /inscricoes/me (Minhas Inscrições)
 Lista inscrições do usuário autenticado ordenadas por `dataInicio` do evento ASC.
 
+Comportamentos do sistema:
+- Sistema registra acesso para fins de auditoria
+
 Respostas: 200 / 204 / 500
 
 Exemplo Sucesso (200):
@@ -183,6 +190,11 @@ Restrições:
 - Inscrição deve estar `ativo`
 - Evento ainda não iniciado (ou política permitir cancelamento tardio)
 
+Comportamentos do sistema:
+- Sistema dispara notificação de cancelamento por e-mail
+- Sistema registra auditoria da operação para fins de segurança
+- Sistema incrementa vaga disponível no evento (recalcula vagas disponíveis)
+
 Respostas: 200 / 403 (não dono / evento iniciado) / 404 (inscrição) / 409 (já cancelada) / 500
 
 Exemplo Sucesso (200):
@@ -202,6 +214,10 @@ Já Cancelada (409):
 
 ### GET /eventos/{id}/inscricoes (Inscrições por Evento)
 Lista inscrições de evento para promotor proprietário. Ordenação por `dataInscricao` DESC.
+
+Comportamentos do sistema:
+- Sistema registra acesso para fins de auditoria
+- Sistema limita exposição de dados pessoais (apenas nome e email necessários)
 
 Respostas: 200 / 204 / 403 / 404 / 500
 

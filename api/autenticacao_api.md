@@ -119,6 +119,10 @@ Validações:
 - Email sintaxe válida; senha obrigatória
 - Máx 5 falhas consecutivas antes de bloqueio 15 min
 
+Comportamentos do sistema:
+- Sistema registra último login e zera contador de falhas em caso de sucesso
+- Sistema registra auditoria da operação para fins de segurança
+
 Respostas: 200 / 401 / 403 / 429 / 500
 
 Exemplo Sucesso (200):
@@ -220,6 +224,10 @@ Validações:
 - Senha atual confere
 - Nova senha atende política (8+, maiúscula, minúscula, número, especial) e diferente da atual
 
+Comportamentos do sistema:
+- Sistema envia notificação de alteração de senha por e-mail
+- Sistema registra auditoria da operação para fins de segurança
+
 Respostas: 200 / 400 / 401 / 500
 
 Sucesso (200):
@@ -242,6 +250,11 @@ Request Body:
 ```json
 { "email": "user@email.com" }
 ```
+
+Comportamentos do sistema:
+- Sistema dispara email via serviço de notificações
+- Sistema registra auditoria da solicitação para fins de segurança
+
 Respostas: 200 / 404 / 429 / 500
 
 Sucesso (200):
@@ -267,6 +280,11 @@ Request Body:
 Validações:
 - Token válido (existente, não expirado, não utilizado)
 - Nova senha atende política
+
+Comportamentos do sistema:
+- Sistema envia notificação de confirmação por e-mail
+- Sistema invalida todos os refresh tokens ativos do usuário
+- Sistema registra auditoria da operação para fins de segurança
 
 Respostas: 200 / 400 / 401 / 500
 

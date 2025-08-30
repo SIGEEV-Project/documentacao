@@ -11,9 +11,20 @@ entity "Usuarios" {
   cpf : VARCHAR(11) <<UNIQUE>>
   telefone : VARCHAR(15)
   dataNascimento : DATE
+  logradouro : VARCHAR(100)
+  numeroEndereco : VARCHAR(10)
+  cidade : VARCHAR(50)
+  estado : CHAR(2)
+  cep : VARCHAR(9)
   perfil : ENUM
   status : VARCHAR(20)
   dataCadastro : TIMESTAMP
+  dataUltimoLogin : TIMESTAMP
+  dataAlteracao : TIMESTAMP
+  dataExclusao : TIMESTAMP
+  dataReativacao : TIMESTAMP
+  tokenRecuperacao : TEXT
+  tokenRecuperacaoExpiraEm : TIMESTAMP
 }
 
 entity "Senhas" {
@@ -49,6 +60,8 @@ entity "Eventos" {
   bannerUrl : TEXT
   status : ENUM
   dataCriacao : TIMESTAMP
+  dataAtualizacao : TIMESTAMP
+  dataExclusao : TIMESTAMP
 }
 
 entity "PrecosEventos" {

@@ -74,6 +74,7 @@ Permitir que o usuário atualize seus dados pessoais e endereço.
 **Pré-condições:**
 - Usuário deve estar autenticado.
 - Dados enviados devem ser válidos.
+- E-mail e CPF não podem ser alterados nesta operação.
 
 **Fluxo principal:**
 1. O usuário acessa a tela de edição de perfil.

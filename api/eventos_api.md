@@ -154,6 +154,10 @@ Validações principais:
 - URL de banner válida (JPG/PNG/WebP) ou ausente.
 - Perfil promotor.
 
+Comportamentos do sistema:
+- Sistema registra auditoria e data/hora de criação
+- Sistema dispara notificação quando evento é publicado (status ativo)
+
 Respostas: 201 / 400 / 403 / 429 (rate limit) / 500
 
 Exemplo Sucesso:
@@ -172,7 +176,7 @@ Lista pública com paginação e cache curto (300s BFF). Retorna eventos com sta
 
 Query Params:
 | Param        | Obrigatório | Default | Limites / Formato | Descrição |
-|--------------|-------------|---------|-------------------|-----------|
+|--------------|-------------|---------|-------------------|----------|
 | pagina       | Não         | 1       | >=1               | Página solicitada |
 | tamanho      | Não         | 20      | 1–20              | Itens por página |
 | ordenarPor   | Não         | dataInicio | dataInicio|titulo|preco|capacidade | Campo de ordenação |
@@ -180,71 +184,13 @@ Query Params:
 
 Cabeçalhos de resposta relevantes:
 | Cabeçalho | Exemplo | Descrição |
-|-----------|---------|-----------|
+|-----------|---------|----------|
 | Cache-Control | public, max-age=300 | Controle de cache BFF |
 | X-Total-Items | 42 | Total de eventos disponíveis |
 | X-Total-Pages | 3 | Total de páginas |
 
-Exemplo Sucesso (200):
-```json
-{
-  "sucesso": true,
-  "mensagem": "Lista de eventos recuperada com sucesso!",
-  "dados": [
-    {
-      "eventoId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
-      "titulo": "Workshop de Segurança",
-      "dataInicio": "2025-10-01T09:00:00Z",
-      "dataFim": "2025-10-01T18:00:00Z",
-      "local": "Recife - PE",
-      "bannerUrl": "https://s3.aws.com/banner.jpg",
-      "vagasRestantes": 50,
-      "capacidade": 100,
-      "preco": 50.0,
-      "status": "ativo"
-    },
-    {
-      "eventoId": "b2c3d4e5-f6g7-8901-2345-678901bcdefg",
-      "titulo": "Palestra sobre Tecnologia",
-      "dataInicio": "2025-11-15T14:00:00Z",
-      "dataFim": "2025-11-15T16:00:00Z",
-      "local": "São Paulo - SP",
-      "bannerUrl": null,
-      "vagasRestantes": 0,
-      "capacidade": 80,
-      "preco": 0.0,
-      "status": "esgotado"
-    }
-  ],
-  "timestamp": "2025-08-17T14:30:00Z",
-  "correlationId": "uuid"
-}
-```
-
-Exemplo Lista Vazia (204 retornando envelope opcional 200 + array vazio se política preferir 200):
-```json
-{
-  "sucesso": true,
-  "mensagem": "Nenhum evento encontrado.",
-  "dados": [],
-  "timestamp": "2025-08-17T14:30:00Z",
-  "correlationId": "uuid"
-}
-```
-
-Erro Interno (500):
-```json
-{
-  "sucesso": false,
-  "mensagem": "Erro interno do servidor.
-",
-  "erros": [ { "campo": "sistema", "mensagem": "Erro interno do servidor. Tente novamente." } ],
-  "timestamp": "2025-08-17T14:30:00Z",
-  "correlationId": "uuid"
-}
-```
-
-Respostas: 200 / 204 / 500
+Comportamentos do sistema:
+- Acesso registrado para métricas/auditoria
 
 ### POST /eventos/filtrar (Pesquisa Avançada)
 Permite filtros complexos via payload.
@@ -265,6 +211,10 @@ Request Body:
   "ordenacao": { "campo": "dataInicio", "direcao": "ASC" }
 }
 ```
+
+Comportamentos do sistema:
+- Métricas de filtros atualizadas
+
 Exemplo Sucesso (200):
 ```json
 {
@@ -337,6 +287,9 @@ Lista todos os eventos do promotor (todos os status). Ordenação default: dataC
 
 Query Params: `pagina`, `tamanho`, `status` (opcional múltiplo).
 
+Comportamentos do sistema:
+- Acesso registrado
+
 Exemplo Sucesso (200):
 ```json
 {
@@ -380,6 +333,10 @@ Respostas: 200 / 204 / 403 / 500
 
 ### GET /eventos/{id} (Detalhes do Evento)
 Retorna detalhes completos (cache 120s). Inclui dados básicos do promotor, nunca dados sensíveis.
+
+Comportamentos do sistema:
+- Log de acesso armazenado
+- Cache de 2 minutos (BFF/microserviço)
 
 Exemplo Sucesso (200):
 ```json
@@ -433,6 +390,11 @@ Respostas: 200 / 400 / 404 / 500
 
 ### PUT /eventos/{id} (Edição de Evento)
 Atualiza campos do evento. Capacidade não pode ficar abaixo de inscrições existentes. Atualizações críticas enviam notificações.
+
+Comportamentos do sistema:
+- Sistema registra auditoria
+- Sistema dispara notificações quando campos críticos mudam (data/local/capacidade)
+
 Request Body (exemplo):
 ```json
 {
@@ -495,6 +457,11 @@ Respostas: 200 / 400 / 403 / 404 / 409 / 500
 
 ### DELETE /eventos/{id} (Cancelamento de Evento)
 Cancelamento lógico. Requer zero inscrições ativas; senão 409.
+
+Comportamentos do sistema:
+- Sistema marca como inativo e registra auditoria
+- Sistema dispara notificações
+
 Exemplo Sucesso (200):
 ```json
 {

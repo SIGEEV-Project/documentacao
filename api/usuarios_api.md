@@ -116,6 +116,10 @@ Validações principais:
 - Senha: mínimo 8 caracteres; maiúscula, minúscula, número e caractere especial.
 - Usuário >= 18 anos.
 
+Comportamentos do sistema:
+- O sistema envia e-mail de confirmação de cadastro para o endereço informado.
+- O sistema gera e retorna um token JWT para autenticação imediata.
+
 Respostas:
 - 201 Created (sucesso)
 - 400 Bad Request (erros de validação)
@@ -130,7 +134,8 @@ Exemplo Sucesso:
   "dados": {
     "usuarioId": "a1b2c3d4-e5f6-7890-1234-567890abcdef",
     "nomeCompleto": "Lucas Benjamin de Araújo Farias A. Costa",
-    "email": "lucas@email.com"
+    "email": "lucas@email.com",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
   },
   "timestamp": "2025-08-28T12:01:00Z",
   "correlationId": "uuid"
@@ -155,6 +160,10 @@ Exemplo Erro (409):
 Retorna dados do próprio usuário.
 
 Permissões: Autenticado
+
+Comportamentos do sistema:
+- O sistema registra data/hora da consulta para fins de auditoria.
+- O CPF é mascarado na resposta conforme regra RNF-004 (exibindo apenas alguns dígitos e ocultando os demais com asteriscos).
 
 Respostas:
 - 200 OK
@@ -197,6 +206,10 @@ Exemplo Sucesso:
 Atualiza dados pessoais e endereço. Email e CPF não podem ser alterados aqui.
 
 Permissões: Autenticado
+
+Comportamentos do sistema:
+- O sistema envia e-mail de confirmação das alterações realizadas.
+- O sistema registra data/hora da alteração para fins de auditoria.
 
 Request Body (exemplo):
 ```json
@@ -243,6 +256,10 @@ Permissões: Administrador
 Path Params:
 - `id` (UUID do usuário alvo)
 
+Comportamentos do sistema:
+- O sistema registra ID do administrador e data/hora da promoção para fins de auditoria.
+- O sistema envia e-mail de notificação ao usuário promovido.
+
 Request Body:
 ```json
 { "novoPerfil": "promotor" }
@@ -272,6 +289,10 @@ Altera perfil de promotor para participante.
 
 Permissões: Administrador
 
+Comportamentos do sistema:
+- O sistema registra ID do administrador e data/hora do rebaixamento para fins de auditoria.
+- O sistema envia e-mail de notificação ao usuário rebaixado.
+
 Request Body:
 ```json
 { "novoPerfil": "participante" }
@@ -300,6 +321,17 @@ Exemplo Sucesso:
 Exclusão lógica da própria conta.
 
 Permissões: Autenticado
+
+Comportamentos do sistema:
+- O sistema solicita confirmação da intenção de exclusão antes de processar (via parâmetro de confirmação na requisição).
+- O sistema envia e-mail de confirmação da exclusão.
+- O sistema impede futuros logins com as credenciais após a exclusão.
+- Os dados são retidos conforme política de retenção (exclusão lógica).
+
+Request Body:
+```json
+{ "confirmacao": "CONFIRMAR" }
+```
 
 Respostas:
 - 200 OK

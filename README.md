@@ -3,6 +3,10 @@
 ## Visão Geral
 O SIGEEV é uma aplicação para gerenciamento de eventos, baseada em arquitetura de microserviços, com foco em escalabilidade, segurança e experiência do usuário. O sistema permite o cadastro de usuários, criação e inscrição em eventos, além de gerenciamento de perfis e notificações.
 
+
+<img width="855" height="979" alt="image" src="https://github.com/user-attachments/assets/15b5eb65-015c-4329-8149-710ecb04bc73" />
+
+
 ## Estrutura da Documentação
 
 ### Arquitetura
